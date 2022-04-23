@@ -3,11 +3,11 @@ import tempfile
 
 from django.contrib.auth import get_user_model
 from django.conf import settings
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from django import forms
 from django.core.cache import cache
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 from posts.models import Post, Group, Comment, Follow
 
@@ -24,13 +24,18 @@ class PostViewTest(TestCase):
         cls.user = User.objects.create_user(username='TestMan')
         cls.user2 = User.objects.create_user(username='User2')
         cls.user3 = User.objects.create_user(username='User3')
-        small_gif = (     
+        small_gif = (
              b'\x47\x49\x46\x38\x39\x61\x02\x00'
              b'\x01\x00\x80\x00\x00\x00\x00\x00'
              b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
              b'\x00\x00\x00\x2C\x00\x00\x00\x00'
              b'\x02\x00\x01\x00\x00\x02\x02\x0C'
              b'\x0A\x00\x3B'
+        )
+        cls.image = SimpleUploadedFile(
+            name='small.gif',
+            content=small_gif,
+            content_type='image/gif'
         )
         cls.group = Group.objects.create(
             title='Тестовая группа 1',
