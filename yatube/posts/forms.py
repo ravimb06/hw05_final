@@ -1,4 +1,3 @@
-from cProfile import label
 from django import forms
 
 from .models import Post, Comment
@@ -17,6 +16,7 @@ class PostForm(forms.ModelForm):
             'text': 'Текст нового поста',
             'group': 'Группа, к которой будет относиться пост',
         }
+
 
 class CommentForm(forms.ModelForm):
 

@@ -24,18 +24,13 @@ class PostViewTest(TestCase):
         cls.user = User.objects.create_user(username='TestMan')
         cls.user2 = User.objects.create_user(username='User2')
         cls.user3 = User.objects.create_user(username='User3')
-        small_gif = (            
+        small_gif = (     
              b'\x47\x49\x46\x38\x39\x61\x02\x00'
              b'\x01\x00\x80\x00\x00\x00\x00\x00'
              b'\xFF\xFF\xFF\x21\xF9\x04\x00\x00'
              b'\x00\x00\x00\x2C\x00\x00\x00\x00'
              b'\x02\x00\x01\x00\x00\x02\x02\x0C'
              b'\x0A\x00\x3B'
-        )
-        uploaded = SimpleUploadedFile(
-            name='small.gif',
-            content=small_gif,
-            content_type='image/gif'
         )
         cls.group = Group.objects.create(
             title='Тестовая группа 1',
@@ -259,13 +254,12 @@ class PostViewTest(TestCase):
         self.assertEqual(post.text, 'Тестовый текст')
         self.assertFalse(post2)
 
-
     @classmethod
     def tearDownClass(cls):
         super().tearDownClass()
-        # Модуль shutil - библиотека Python с удобными инструментами 
-        # для управления файлами и директориями: 
-        # создание, удаление, копирование, перемещение, изменение папок и файлов
+        # Модуль shutil - библиотека Python с удобными инструментами
+        # для управления файлами и директориями:
+        # создание, удаление, копирование, изменение папок и файлов
         # Метод shutil.rmtree удаляет директорию и всё её содержимое
         shutil.rmtree(TEMP_MEDIA_ROOT, ignore_errors=True)
 

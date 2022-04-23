@@ -32,13 +32,14 @@ class Post(models.Model):
         'Картинка',
         upload_to='posts/',
         blank=True
-    )  
+    )
 
     def __str__(self) -> str:
         return self.text[:15]
 
     class Meta:
         ordering = ('-pub_date',)
+
 
 class Comment(models.Model):
     text = models.TextField()
@@ -53,6 +54,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
         related_name='comments',
     )
+
 
 class Follow(models.Model):
     user = models.ForeignKey(
