@@ -16,7 +16,7 @@ class SignUp(CreateView):
 class LogOut(CreateView):
     form_class = CreationForm
     success_url = reverse_lazy('post:index')
-    template_name = 'users/logout.html'
+    template_name = 'users/logged_out.html'
 
 
 class PasswordChange(forms.Form):

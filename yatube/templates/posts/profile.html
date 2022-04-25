@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 {%load thumbnail%}
 {% block title %}
-  {{ user.get_full_name }} профайл пользователя
+  {{ profile.get_full_name }} профайл пользователя
 {% endblock %}
 {% block content %}
-  <h1>Все посты пользователя {{ user.get_full_name }} </h1>
+  <h1>Все посты пользователя {{ profile.get_full_name }} </h1>
   <h3>Всего постов: {{ posts_count }} </h3>
-  {% if following %}
-    <a
-      class="btn btn-lg btn-light"
-      href="{% url 'posts:profile_unfollow' user.username %}" role="button"
-    >
-      Отписаться
-    </a>
-  {% else %}
+  {% if not_my_page %}
+    {% if following %}
       <a
-        class="btn btn-lg btn-primary"
-        href="{% url 'posts:profile_follow' username.username %}" role="button"
+        class="btn btn-lg btn-light"
+        href="{% url 'posts:profile_unfollow' profile.username %}" role="button"
       >
-        Подписаться
+        Отписаться
       </a>
-   {% endif %}
+    {% else %}
+        <a
+          class="btn btn-lg btn-primary"
+          href="{% url 'posts:profile_follow' profile.username %}" role="button"
+        >
+          Подписаться
+        </a>
+    {% endif %}
+  {% endif %}
   {% for post in page_obj %}
     <article>
     <ul>

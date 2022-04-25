@@ -37,8 +37,9 @@ class PostURLTests(TestCase):
             '/posts/index.html': '/',
             '/posts/group_list.html': f'/group/{self.group.slug}/',
             '/posts/profile.html': f'/profile/{self.user.username}/',
-            '/posts/post_detail.html': f'/posts/{self.post.id}/',
+            '/posts/post_detail.html': f'/posts/{self.post.id}/'
         }
+# Я не понял какие новые пути, ведь follow доступен лишь для авторизованных
 
         for template, address in url_exists_at_desired.items():
             with self.subTest(address=address):
@@ -53,7 +54,8 @@ class PostURLTests(TestCase):
             f'/group/{self.group.slug}/': 'posts/group_list.html',
             f'/posts/{self.post.pk}/': 'posts/post_detail.html',
             f'/profile/{self.user}/': 'posts/profile.html',
-            f'/posts/{self.post.pk}/edit/': 'posts/create_post.html'
+            f'/posts/{self.post.pk}/edit/': 'posts/create_post.html',
+            f'/follow/': 'posts/follow.html'
         }
         for address, template in template_url_names.items():
             with self.subTest(address=address):
